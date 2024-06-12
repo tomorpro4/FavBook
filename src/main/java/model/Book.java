@@ -1,13 +1,13 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Book implements Serializable {
 	private String id;
 	private String isbn;
 	private String title;
-	private ArrayList<String> creator = new ArrayList<String>();
+	//	private ArrayList<String> creator = new ArrayList<String>();
+	private String creator;
 	private String issued;
 	private String category;
 	private String recordCategory;
@@ -16,12 +16,13 @@ public class Book implements Serializable {
 	public Book() {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
-	
-	public Book(String id,String title, String isbn, String creator, String issued, String category) {
+
+	public Book(String id, String title, String isbn, String creator, String issued, String category) {
 		this.id = id;
 		this.title = title;
 		this.isbn = isbn;
-		this.creator.add(creator);
+		//		this.creator.add(creator);
+		this.creator = creator;
 		this.issued = issued;
 		this.category = category;
 
@@ -51,11 +52,19 @@ public class Book implements Serializable {
 		this.title = title;
 	}
 
-	public ArrayList<String> getCreator() {
+	//	public ArrayList<String> getCreator() {
+	//	return creator;
+	//}
+	//
+	//public void setCreator(ArrayList<String> creator) {
+	//	this.creator = creator;
+	//}
+
+	public String getCreator() {
 		return creator;
 	}
 
-	public void setCreator(ArrayList<String> creator) {
+	public void setCreator(String creator) {
 		this.creator = creator;
 	}
 

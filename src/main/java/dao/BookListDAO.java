@@ -50,7 +50,7 @@ public class BookListDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			int i = 0;
 
-			String sql = "SELECT BookListId, BookTitle, ISBN, Creator, Publisher, Category, Photo FROM book_list JOIN  WHERE";
+			String sql = "SELECT bookListId, bookTitle, isbn, creatorName, publisherName, categoryName, Photo FROM book_list JOIN publisherlist ON book_list.publisherId = publisherlist.publisherId JOIN creatorlist ON book_list.creatorId = creatorlist.creatorId JOIN categorylist ON book_list.categoryId = categorylist.categoryId WHERE";
 			if (!(keyword.getTitle() == null || keyword.getTitle().equals(""))) {
 				sql = AddAND(i, sql);
 				sql += " BookTitle LIKE ?";
@@ -105,14 +105,14 @@ public class BookListDAO {
 			rs = pStmt.executeQuery();
 			System.out.println("rs:" + rs);
 			while (rs.next()) {
-				String id = rs.getString("BookListId");
-				String isbn = rs.getString("ISBN");
-				String title = rs.getString("BookTitle");
+				String id = rs.getString("bookListId");
+				String isbn = rs.getString("isbn");
+				String title = rs.getString("bookTitle");
 				//				ArrayList<String> creator = new ArrayList<String>();
 				//				creator.add(rs.getString("Creator"));
-				String creator = rs.getString("Creator");
-				String issued = rs.getString("Publisher");
-				String category = rs.getString("Category");
+				String creator = rs.getString("creatorName");
+				String issued = rs.getString("publisherName");
+				String category = rs.getString("categoryName");
 				String recordCategory = "";
 				String recordSubCategory = "";
 				if (!(id == null || id.equals(""))) {
@@ -125,7 +125,6 @@ public class BookListDAO {
 					Book book = new Book(id, title, isbn, creator, issued, category);
 					bookList.add(book);
 				}
-
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

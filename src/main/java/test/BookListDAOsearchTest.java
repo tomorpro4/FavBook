@@ -15,9 +15,9 @@ public class BookListDAOsearchTest {
 
 	public static void BookSearchOK() {
 		String isbn = null;
-		String title = "%A%";
+		String title = "%C%";
 		String creator = null;
-		String issued = "Publisher_A";
+		String issued = null;
 		String category = null;
 		Keyword keyword = new Keyword(title, isbn, creator, issued, category);
 		BookListDAO bookListDAO = new BookListDAO();
