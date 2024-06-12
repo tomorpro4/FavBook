@@ -67,5 +67,44 @@ public class creatorlistDAO {
 		
 		return creator;
 	}
+	
+	
+
+	public Creator searchCreatorByName(Creator creator) {
+		readDriver();
+		ResultSet rs = null;
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			int i = 0;
+			String sql = "SELECT * FROM creatorlist WHERE ";
+			if (!(creator.getCreatorName() == null)) {
+				sql = AddAND(i, sql);
+				sql += " creatorName = ?";
+				i++;
+			}
+			sql += ";";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			int j = 0;
+			if (!(creator.getCreatorName() == null)) {
+				j++;
+				pStmt.setString(j, creator.getCreatorName());
+			}
+
+			System.out.println(pStmt);
+			rs = pStmt.executeQuery();
+			System.out.println("rs:" + rs);
+			while (rs.next()) {
+				int creatorId = rs.getInt("creatorId");
+				String creatorName = rs.getString("creatorName");
+				if (!(creatorId == 0)){
+					creator.setCreatorId(creatorId);
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return creator;
+	}
 
 }
