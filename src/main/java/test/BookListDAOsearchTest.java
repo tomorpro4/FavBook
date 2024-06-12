@@ -26,9 +26,9 @@ public class BookListDAOsearchTest {
 			System.out.println(bookList.get(i).getId());
 			System.out.println(bookList.get(i).getTitle());
 			System.out.println(bookList.get(i).getIsbn());
-			System.out.println(bookList.get(i).getCreator());
-			System.out.println(bookList.get(i).getIssued());
-			System.out.println(bookList.get(i).getCategory());
+			System.out.println(bookList.get(i).getCreator().getCreatorName());
+			System.out.println(bookList.get(i).getPublisher().getPublisherName());
+			System.out.println(bookList.get(i).getCategory().getCategoryName());
 			
 		}
 	}

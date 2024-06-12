@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import model.Book;
+import model.Category;
+import model.Creator;
 import model.Keyword;
+import model.Publisher;
 
 public class BookListDAO {
 
@@ -50,7 +53,7 @@ public class BookListDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			int i = 0;
 
-			String sql = "SELECT bookListId, bookTitle, isbn, creatorName, publisherName, categoryName, Photo FROM book_list JOIN publisherlist ON book_list.publisherId = publisherlist.publisherId JOIN creatorlist ON book_list.creatorId = creatorlist.creatorId JOIN categorylist ON book_list.categoryId = categorylist.categoryId WHERE";
+			String sql = "SELECT bookListId, bookTitle, isbn, creatorlist.creatorId, creatorName, publisherlist.publisherId, publisherName, categorylist.categoryId, categoryName, Photo FROM book_list JOIN publisherlist ON book_list.publisherId = publisherlist.publisherId JOIN creatorlist ON book_list.creatorId = creatorlist.creatorId JOIN categorylist ON book_list.categoryId = categorylist.categoryId WHERE";
 			if (!(keyword.getTitle() == null || keyword.getTitle().equals(""))) {
 				sql = AddAND(i, sql);
 				sql += " BookTitle LIKE ?";
@@ -110,9 +113,9 @@ public class BookListDAO {
 				String title = rs.getString("bookTitle");
 				//				ArrayList<String> creator = new ArrayList<String>();
 				//				creator.add(rs.getString("Creator"));
-				String creator = rs.getString("creatorName");
-				String issued = rs.getString("publisherName");
-				String category = rs.getString("categoryName");
+				Creator creator = new Creator(Integer.parseInt(rs.getString("creatorId")), rs.getString("creatorName"));
+				Publisher publisher = new Publisher(Integer.parseInt(rs.getString("publisherId")), rs.getString("publisherName"));
+				Category category = new Category(Integer.parseInt(rs.getString("categoryId")), rs.getString("categoryName"));
 				String recordCategory = "";
 				String recordSubCategory = "";
 				if (!(id == null || id.equals(""))) {
@@ -122,7 +125,7 @@ public class BookListDAO {
 //					System.out.println(creator);
 //					System.out.println(issued);
 //					System.out.println(category);
-					Book book = new Book(id, title, isbn, creator, issued, category);
+					Book book = new Book(id, title, isbn, creator, publisher, category);
 					bookList.add(book);
 				}
 			}
