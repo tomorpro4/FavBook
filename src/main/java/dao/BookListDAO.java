@@ -69,7 +69,7 @@ public class BookListDAO {
 				sql += " Creator LIKE ?";
 				i++;
 			}
-			if (!(keyword.getIssued() == null || keyword.getIssued().equals(""))) {
+			if (!(keyword.getPublisher() == null || keyword.getPublisher().equals(""))) {
 				sql = AddAND(i, sql);
 				sql += " Publisher LIKE ?";
 				i++;
@@ -95,9 +95,9 @@ public class BookListDAO {
 				j++;
 				pStmt.setString(j, keyword.getCreator());
 			}
-			if (!(keyword.getIssued() == null || keyword.getIssued().equals(""))) {
+			if (!(keyword.getPublisher() == null || keyword.getPublisher().equals(""))) {
 				j++;
-				pStmt.setString(j, keyword.getIssued());
+				pStmt.setString(j, keyword.getPublisher());
 			}
 			if (!(keyword.getCategory() == null || keyword.getCategory().equals(""))) {
 				j++;

@@ -3,22 +3,83 @@ package model;
 import java.io.Serializable;
 
 public class Keyword implements Serializable {
+	private int isbnCon;
 	private String isbn;
+	private int titleCon;
 	private String title;
+	private int creatorCon;
 	private String creator;
-	private String issued;
+	private int publisherCon;
+	private String publisher;
+	private int categoryCon;
 	private String category;
+	private int recordCategoryCon;
 	private String recordCategory;
+	private int recordSubCategoryCon;
 	private String recordSubCategory;
 
-	public Keyword(String title, String isbn, String creator, String issued, String category) {
+	public Keyword(String title, String isbn, String creator, String publisher, String category) {
 		this.title = title;
 		this.isbn = isbn;
 		this.creator = creator;
-		this.issued = issued;
+		this.publisher = publisher;
+		this.category = category;
+	}
+	public Keyword(int titleCon, String title, int isbnCon, String isbn, int creatorCon, String creator, int publisherCon, String publisher, int categoryCon, String category) {
+		this.titleCon = titleCon;
+		this.title = title;
+		this.isbnCon = isbnCon;
+		this.isbn = isbn;
+		this.creatorCon = creatorCon;
+		this.creator = creator;
+		this.publisherCon = publisherCon;
+		this.publisher = publisher;
+		this.categoryCon = categoryCon;
 		this.category = category;
 	}
 
+	public int getIsbnCon() {
+		return isbnCon;
+	}
+	public void setIsbnCon(int isbnCon) {
+		this.isbnCon = isbnCon;
+	}
+	public int getTitleCon() {
+		return titleCon;
+	}
+	public void setTitleCon(int titleCon) {
+		this.titleCon = titleCon;
+	}
+	public int getCreatorCon() {
+		return creatorCon;
+	}
+	public void setCreatorCon(int creatorCon) {
+		this.creatorCon = creatorCon;
+	}
+	public int getPublisherCon() {
+		return publisherCon;
+	}
+	public void setPublisherCon(int publisherCon) {
+		this.publisherCon = publisherCon;
+	}
+	public int getCategoryCon() {
+		return categoryCon;
+	}
+	public void setCategoryCon(int categoryCon) {
+		this.categoryCon = categoryCon;
+	}
+	public int getRecordCategoryCon() {
+		return recordCategoryCon;
+	}
+	public void setRecordCategoryCon(int recordCategoryCon) {
+		this.recordCategoryCon = recordCategoryCon;
+	}
+	public int getRecordSubCategoryCon() {
+		return recordSubCategoryCon;
+	}
+	public void setRecordSubCategoryCon(int recordSubCategoryCon) {
+		this.recordSubCategoryCon = recordSubCategoryCon;
+	}
 	public String getIsbn() {
 		return isbn;
 	}
@@ -43,12 +104,12 @@ public class Keyword implements Serializable {
 		this.creator = creator;
 	}
 
-	public String getIssued() {
-		return issued;
+	public String getPublisher() {
+		return publisher;
 	}
 
-	public void setIssued(String issued) {
-		this.issued = issued;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
 	public String getCategory() {
