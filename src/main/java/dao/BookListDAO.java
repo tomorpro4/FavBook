@@ -27,11 +27,15 @@ public class BookListDAO {
 		}
 	}
 
+	
+	
 	public String AddAND(int i, String sql) {
+		if(i==0) sql += " WHERE";
 		if(i>0) sql += " AND";
 		return sql;
 	}
 	public String AddOR(int i, String sql) {
+		if(i==0) sql += " WHERE";
 		if(i>0) sql += " OR";
 		return sql;
 	}
@@ -53,7 +57,7 @@ public class BookListDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			int i = 0;
 
-			String sql = "SELECT bookListId, bookTitle, isbn, creatorlist.creatorId, creatorName, publisherlist.publisherId, publisherName, categorylist.categoryId, categoryName, Photo FROM book_list JOIN publisherlist ON book_list.publisherId = publisherlist.publisherId JOIN creatorlist ON book_list.creatorId = creatorlist.creatorId JOIN categorylist ON book_list.categoryId = categorylist.categoryId WHERE";
+			String sql = "SELECT bookListId, bookTitle, isbn, creatorlist.creatorId, creatorName, publisherlist.publisherId, publisherName, categorylist.categoryId, categoryName, Photo FROM book_list JOIN publisherlist ON book_list.publisherId = publisherlist.publisherId JOIN creatorlist ON book_list.creatorId = creatorlist.creatorId JOIN categorylist ON book_list.categoryId = categorylist.categoryId";
 			if (!(keyword.getTitle() == null || keyword.getTitle().equals(""))) {
 				sql = AddAND(i, sql);
 				sql += " BookTitle LIKE ?";
@@ -85,23 +89,23 @@ public class BookListDAO {
 			int j = 0;
 			if (!(keyword.getTitle() == null || keyword.getTitle().equals(""))) {
 				j++;
-				pStmt.setString(j, keyword.getTitle());
+				pStmt.setString(j, keyword.getNewTitle());
 			}
 			if (!(keyword.getIsbn() == null || keyword.getIsbn().equals(""))) {
 				j++;
-				pStmt.setString(j, keyword.getIsbn());
+				pStmt.setString(j, keyword.getNewIsbn());
 			}
 			if (!(keyword.getCreator() == null || keyword.getCreator().equals(""))) {
 				j++;
-				pStmt.setString(j, keyword.getCreator());
+				pStmt.setString(j, keyword.getNewCreator());
 			}
 			if (!(keyword.getPublisher() == null || keyword.getPublisher().equals(""))) {
 				j++;
-				pStmt.setString(j, keyword.getPublisher());
+				pStmt.setString(j, keyword.getNewPublisher());
 			}
 			if (!(keyword.getCategory() == null || keyword.getCategory().equals(""))) {
 				j++;
-				pStmt.setString(j, keyword.getCategory());
+				pStmt.setString(j, keyword.getNewCategory());
 			}
 
 			System.out.println(pStmt);

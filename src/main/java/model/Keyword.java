@@ -19,10 +19,15 @@ public class Keyword implements Serializable {
 	private String recordSubCategory;
 
 	public Keyword(String title, String isbn, String creator, String publisher, String category) {
+		this.titleCon = 0;
 		this.title = title;
+		this.isbnCon = 0;
 		this.isbn = isbn;
+		this.creatorCon = 0;
 		this.creator = creator;
+		this.publisherCon = 0;
 		this.publisher = publisher;
+		this.categoryCon = 0;
 		this.category = category;
 	}
 	public Keyword(int titleCon, String title, int isbnCon, String isbn, int creatorCon, String creator, int publisherCon, String publisher, int categoryCon, String category) {
@@ -37,103 +42,91 @@ public class Keyword implements Serializable {
 		this.categoryCon = categoryCon;
 		this.category = category;
 	}
-
+	
+	private String setCon(int con, String keyword) {
+		String newKeyword;
+		switch (con) {
+		case 0 -> newKeyword = "%" + keyword + "%";
+		case 1 -> newKeyword = keyword + "%";
+		case 2 -> newKeyword = "%" + keyword;
+		case 3 -> newKeyword = keyword;
+		default -> newKeyword = "%" + keyword + "%";
+		}
+		return newKeyword;
+	}
+	
 	public int getIsbnCon() {
 		return isbnCon;
-	}
-	public void setIsbnCon(int isbnCon) {
-		this.isbnCon = isbnCon;
-	}
-	public int getTitleCon() {
-		return titleCon;
-	}
-	public void setTitleCon(int titleCon) {
-		this.titleCon = titleCon;
-	}
-	public int getCreatorCon() {
-		return creatorCon;
-	}
-	public void setCreatorCon(int creatorCon) {
-		this.creatorCon = creatorCon;
-	}
-	public int getPublisherCon() {
-		return publisherCon;
-	}
-	public void setPublisherCon(int publisherCon) {
-		this.publisherCon = publisherCon;
-	}
-	public int getCategoryCon() {
-		return categoryCon;
-	}
-	public void setCategoryCon(int categoryCon) {
-		this.categoryCon = categoryCon;
-	}
-	public int getRecordCategoryCon() {
-		return recordCategoryCon;
-	}
-	public void setRecordCategoryCon(int recordCategoryCon) {
-		this.recordCategoryCon = recordCategoryCon;
-	}
-	public int getRecordSubCategoryCon() {
-		return recordSubCategoryCon;
-	}
-	public void setRecordSubCategoryCon(int recordSubCategoryCon) {
-		this.recordSubCategoryCon = recordSubCategoryCon;
 	}
 	public String getIsbn() {
 		return isbn;
 	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+	public int getTitleCon() {
+		return titleCon;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public int getCreatorCon() {
+		return creatorCon;
 	}
-
 	public String getCreator() {
 		return creator;
 	}
-
-	public void setCreator(String creator) {
-		this.creator = creator;
+	public int getPublisherCon() {
+		return publisherCon;
 	}
-
 	public String getPublisher() {
 		return publisher;
 	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
+	public int getCategoryCon() {
+		return categoryCon;
 	}
-
 	public String getCategory() {
 		return category;
 	}
-
-	public void setCategory(String category) {
-		this.category = category;
+	public int getRecordCategoryCon() {
+		return recordCategoryCon;
 	}
-
 	public String getRecordCategory() {
 		return recordCategory;
 	}
-
-	public void setRecordCategory(String recordCategory) {
-		this.recordCategory = recordCategory;
+	public int getRecordSubCategoryCon() {
+		return recordSubCategoryCon;
 	}
-
 	public String getRecordSubCategory() {
 		return recordSubCategory;
 	}
 
-	public void setRecordSubCategory(String recordSubCategory) {
-		this.recordSubCategory = recordSubCategory;
+	
+	
+
+	public String getNewIsbn() {
+		String newIsbn = setCon(isbnCon, isbn);
+		return newIsbn;
 	}
+
+	public String getNewTitle() {
+		String newTitle = setCon(titleCon,title);
+		return newTitle;
+	}
+
+	public String getNewCreator() {
+		String newCreator = setCon(creatorCon, creator);
+		return newCreator;
+	}
+
+	public String getNewPublisher() {
+		String newPubliser = setCon(publisherCon, publisher);
+		return newPubliser;
+	}
+
+	public String getNewCategory() {
+		String newCategory = setCon(categoryCon, category);
+		return newCategory;
+	}
+
+
+	
 
 }

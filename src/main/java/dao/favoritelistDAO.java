@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import model.Creator;
+import model.LoginUser;
 
 public class favoritelistDAO {
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/favorite_book";
@@ -30,7 +31,8 @@ public class favoritelistDAO {
 		return sql;
 	}
 	
-	public void listFavBook() {
+	public void listFavBook(LoginUser loginUser) {
+		String sql = "SELECT favBookId, userId, favoritebooklist.statusId, statuslist.status, memo,  favoritebooklist.bookId,booklist.bookTitle, isbn, booklist.creatorId, creatorlist.creatorName, booklist.publisherId, publisherlist.publisherName, booklist.categoryId, categorylist.categoryName  FROM favoritebooklist JOIN booklist ON favoritebooklist.bookId = booklist.bookListId JOIN publisherlist ON booklist.publisherId = publisherlist.publisherId JOIN creatorlist ON booklist.creatorId = creatorlist.creatorId JOIN categorylist ON booklist.categoryId = categorylist.categoryId JOIN statuslist ON favoritebooklist.statusId = statuslist.statusId";
 		
 	}
 	

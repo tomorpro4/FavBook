@@ -15,7 +15,7 @@ public class BookListDAOsearchTest {
 
 	public static void BookSearchOK() {
 		String isbn = null;
-		String title = "%C%";
+		String title = "C";
 		String creator = null;
 		String issued = null;
 		String category = null;
