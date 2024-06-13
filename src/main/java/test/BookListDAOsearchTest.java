@@ -16,10 +16,10 @@ public class BookListDAOsearchTest {
 	public static void BookSearchOK() {
 		int isbnCon = 0;
 		String isbn = null;
-		int titleCon = 3;
-		String title = "Title_C";
+		int titleCon = 0;
+		String title = "C";
 		int creatorCon = 0;
-		String creator = null;
+		String creator = "B";
 		int publisherCon = 0;
 		String publisher = null;
 		int categoryCon = 0;

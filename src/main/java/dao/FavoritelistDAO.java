@@ -119,27 +119,27 @@ public class FavoritelistDAO {
 			}
 			if (!(keyword.getTitle() == null || keyword.getTitle().equals(""))) {
 				sql = AddAND(i, sql);
-				sql += " BookTitle LIKE ?";
+				sql += " bookTitle LIKE ?";
 				i++;
 			}
 			if (!(keyword.getIsbn() == null || keyword.getIsbn().equals(""))) {
 				sql = AddAND(i, sql);
-				sql += " ISBN LIKE ?";
+				sql += " isbn LIKE ?";
 				i++;
 			}
 			if (!(keyword.getCreator() == null || keyword.getCreator().equals(""))) {
 				sql = AddAND(i, sql);
-				sql += " Creator LIKE ?";
+				sql += " creatorName LIKE ?";
 				i++;
 			}
 			if (!(keyword.getPublisher() == null || keyword.getPublisher().equals(""))) {
 				sql = AddAND(i, sql);
-				sql += " Publisher LIKE ?";
+				sql += " publisherName LIKE ?";
 				i++;
 			}
 			if (!(keyword.getCategory() == null || keyword.getCategory().equals(""))) {
 				sql = AddAND(i, sql);
-				sql += " Category LIKE ?";
+				sql += " categoryName LIKE ?";
 				i++;
 			}
 			sql += ";";

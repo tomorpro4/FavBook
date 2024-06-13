@@ -16,12 +16,12 @@ public class FavoriteBookListDAOsearchTest {
 		
 		int isbnCon = 0;
 		String isbn = null;
-		int titleCon = 1;
-		String title = "C";
+		int titleCon = 0;
+		String title = "i";
 		int creatorCon = 0;
-		String creator = null;
+		String creator = "C";
 		int publisherCon = 0;
-		String publisher = null;
+		String publisher = "A";
 		int categoryCon = 0;
 		String category = null;
 		Keyword keyword = new Keyword(titleCon, title, isbnCon, isbn, creatorCon, creator, publisherCon, publisher, categoryCon, category);
