@@ -65,6 +65,7 @@ public class Keyword implements Serializable {
 		return titleCon;
 	}
 	public String getTitle() {
+		
 		return title;
 	}
 	public int getCreatorCon() {

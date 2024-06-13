@@ -3,9 +3,9 @@ package model;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-	private String id;
+	private int bookId;
 	private String isbn;
-	private String title;
+	private String bookTitle;
 	//	private ArrayList<String> creator = new ArrayList<String>();
 	private Creator creator;
 	private Publisher publisher;
@@ -17,9 +17,9 @@ public class Book implements Serializable {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
-	public Book(String id, String title, String isbn, Creator creator, Publisher publisher, Category category) {
-		this.id = id;
-		this.title = title;
+	public Book(int bookId, String bookTitle, String isbn, Creator creator, Publisher publisher, Category category) {
+		this.bookId = bookId;
+		this.bookTitle = bookTitle;
 		this.isbn = isbn;
 		//		this.creator.add(creator);
 		this.creator = creator;
@@ -28,68 +28,36 @@ public class Book implements Serializable {
 
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public int getBookId() {
+		return bookId;
 	}
 
 	public String getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public String getBookTitle() {
+		return bookTitle;
 	}
 
 	public Creator getCreator() {
 		return creator;
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
-	}
-
 	public Publisher getPublisher() {
 		return publisher;
-	}
-
-	public void setPublisher(Publisher publisher) {
-		this.publisher = publisher;
 	}
 
 	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	public String getRecordCategory() {
 		return recordCategory;
 	}
 
-	public void setRecordCategory(String recordCategory) {
-		this.recordCategory = recordCategory;
-	}
-
 	public String getRecordSubCategory() {
 		return recordSubCategory;
-	}
-
-	public void setRecordSubCategory(String recordSubCategory) {
-		this.recordSubCategory = recordSubCategory;
 	}
 
 }
