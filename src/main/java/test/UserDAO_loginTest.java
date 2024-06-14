@@ -18,7 +18,7 @@ public class UserDAO_loginTest {
 	
 	
 	public static void loginOKTest() {
-		User user = new User("tomo","","1234");
+		User user = new User("tomo", "1234");
 		UserDAO userDAO = new UserDAO();
 		LoginUser loginUser = userDAO.loginUser(user);
 		if(
@@ -34,7 +34,7 @@ public class UserDAO_loginTest {
 	
 	
 	public static void loginNGTest() {
-		User user = new User("tomo","","124");
+		User user = new User("tomo","124");
 		UserDAO userDAO = new UserDAO();
 		LoginUser loginUser = userDAO.loginUser(user);
 		if(loginUser == null) {
@@ -46,7 +46,7 @@ public class UserDAO_loginTest {
 	
 	
 	public static void registerOKTest() {
-		NewUser newUser = new NewUser("id","a@aaa","pass","name");
+		NewUser newUser = new NewUser("idascd","a@accccccccccsaaa","pass","name");
 		UserDAO userDAO = new UserDAO();
 		boolean bo = userDAO.registerUser(newUser);
 		
@@ -59,7 +59,7 @@ public class UserDAO_loginTest {
 	}
 	
 	public static void registerNGTest() {
-		NewUser newUser = new NewUser("ttatdca","a@aa","pass","name");
+		NewUser newUser = new NewUser("ttatdadca","a@aadsa","pass","name");
 		UserDAO userDAO = new UserDAO();
 		boolean bo = userDAO.registerUser(newUser);
 		

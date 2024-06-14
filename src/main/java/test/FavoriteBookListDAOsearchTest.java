@@ -12,7 +12,7 @@ public class FavoriteBookListDAOsearchTest {
 	}
 
 	public static void FavoriteBookListOK() {
-		User user = new User("id","tomorpro4@gmail.com","1234");
+		User user = new User("id","1234");
 		
 		int isbnCon = 0;
 		String isbn = null;

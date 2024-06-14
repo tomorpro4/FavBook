@@ -3,6 +3,18 @@ package model;
 public class FavBook extends Book {
 	private int favBookId;
 	private Status status;
+	public int getFavBookId() {
+		return favBookId;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
 	private String memo;
 
 	public FavBook() {
