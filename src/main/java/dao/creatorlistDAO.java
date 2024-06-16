@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import model.Creator;
 
 public class creatorlistDAO {
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/favorite_book";
 	private final String DB_USER = "root";
-	private final String DB_PASS = "0322ja";
+	private final String DB_PASS = "Tomo_20050124";
 
 	public void readDriver() {
 		try {
@@ -28,6 +29,24 @@ public class creatorlistDAO {
 	public String AddOR(int i, String sql) {
 		if(i>0) sql += " OR";
 		return sql;
+	}
+	
+	
+	public Creator insertCreator(Creator creator) {
+		readDriver();
+		int rs;
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "INSERT INTO creatorlist (creatorName) VALUE(?);";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, creator.getCreatorName());
+			rs = pStmt.executeUpdate();
+			creator = searchCreatorByName(creator);
+			
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return creator;
 	}
 	
 	

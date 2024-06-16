@@ -3,6 +3,10 @@ package model;
 import java.io.Serializable;
 
 public class Keyword implements Serializable {
+	private int startRecord;
+	private int maximumRecords;
+
+
 	private int isbnCon;
 	private String isbn;
 	private int titleCon;
@@ -17,7 +21,17 @@ public class Keyword implements Serializable {
 	private String recordCategory;
 	private int recordSubCategoryCon;
 	private String recordSubCategory;
+	private int sortBy;
+	private int sortByCon;
 
+	
+	
+	public Keyword() {}
+	public Keyword(int isbnCon, String isbn) {
+		this.isbnCon = isbnCon;
+		this.isbn = isbn;
+	}
+	
 	public Keyword(String title, String isbn, String creator, String publisher, String category) {
 		this.titleCon = 0;
 		this.title = title;
@@ -43,12 +57,29 @@ public class Keyword implements Serializable {
 		this.category = category;
 	}
 	
+	public Keyword(int titleCon, String title, int isbnCon, String isbn, int creatorCon, String creator, int publisherCon, String publisher, int categoryCon, String category, int sortBy, int sortByCon) {
+		this.titleCon = titleCon;
+		this.title = title;
+		this.isbnCon = isbnCon;
+		this.isbn = isbn;
+		this.creatorCon = creatorCon;
+		this.creator = creator;
+		this.publisherCon = publisherCon;
+		this.publisher = publisher;
+		this.categoryCon = categoryCon;
+		this.category = category;
+		this.sortBy = sortBy;
+		this.sortByCon = sortByCon;
+	}
+	
+	
+	
 	private String setCon(int con, String keyword) {
 		String newKeyword;
 		switch (con) {
 		case 0 -> newKeyword = "%" + keyword + "%";
-		case 1 -> newKeyword = keyword + "%";
-		case 2 -> newKeyword = "%" + keyword;
+		case 2 -> newKeyword = keyword + "%";
+//		case 2 -> newKeyword = "%" + keyword;
 		case 3 -> newKeyword = keyword;
 		default -> newKeyword = "%" + keyword + "%";
 		}
@@ -127,7 +158,18 @@ public class Keyword implements Serializable {
 		return newCategory;
 	}
 
-
+	public int getStartRecord() {
+		return startRecord;
+	}
+	public void setStartRecord(int startRecord) {
+		this.startRecord = startRecord;
+	}
+	public int getMaximumRecords() {
+		return maximumRecords;
+	}
+	public void setMaximumRecords(int maximumRecords) {
+		this.maximumRecords = maximumRecords;
+	}
 	
 
 }

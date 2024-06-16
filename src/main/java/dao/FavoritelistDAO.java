@@ -4,20 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Book;
+import model.BookList;
 import model.Category;
 import model.Creator;
 import model.FavBook;
 import model.Keyword;
 import model.Publisher;
 import model.Status;
+import model.StrToInt;
 import model.User;
 
 public class FavoritelistDAO {
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/favorite_book";
 	private final String DB_USER = "root";
-	private final String DB_PASS = "0322ja";
+	private final String DB_PASS = "Tomo_20050124";
 
 	public void readDriver() {
 		try {
@@ -47,7 +51,7 @@ public class FavoritelistDAO {
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			int i = 0;
-			String sql = "SELECT favBookId, userId, favoritebooklist.statusId, statuslist.status, memo,  favoritebooklist.bookId,booklist.bookTitle, isbn, booklist.creatorId, creatorlist.creatorName, booklist.publisherId, publisherlist.publisherName, booklist.categoryId, categorylist.categoryName  FROM favoritebooklist JOIN booklist ON favoritebooklist.bookId = booklist.bookListId JOIN publisherlist ON booklist.publisherId = publisherlist.publisherId JOIN creatorlist ON booklist.creatorId = creatorlist.creatorId JOIN categorylist ON booklist.categoryId = categorylist.categoryId JOIN statuslist ON favoritebooklist.statusId = statuslist.statusId";
+			String sql = "SELECT favBookId, userId, favoritebooklist.statusId, statuslist.status, memo,  favoritebooklist.bookId,booklist.bookTitle, isbn, bookidcreatoridlist.creatorId, creatorlist.creatorName, booklist.publisherId, publisherlist.publisherName, bookidcategoryidlist.categoryId, categorylist.categoryName FROM favoritebooklist JOIN booklist ON favoritebooklist.bookId = booklist.bookListId JOIN publisherlist ON booklist.publisherId = publisherlist.publisherId JOIN bookidcreatoridlist ON booklist.bookListId = bookidcreatoridlist.bookListId JOIN bookidcategoryidlist ON booklist.bookListId = bookidcategoryidlist.bookListId JOIN creatorlist ON bookidcreatoridlist.creatorId = creatorlist.creatorId JOIN categorylist ON bookidcategoryidlist.categoryId = categorylist.categoryId JOIN statuslist ON favoritebooklist.statusId = statuslist.statusId";
 			
 			
 			if (!(user.getUserId() == null || user.getUserId().equals(""))) {
@@ -98,10 +102,10 @@ public class FavoritelistDAO {
 		return favBookList;
 	}
 	
-	public ArrayList<FavBook> listFavBook(User user, Keyword keyword) {
+	public BookList listFavBook(User user, Keyword keyword) {
 		readDriver();
 		ResultSet rs = null;
-		ArrayList<FavBook> favBookList = new ArrayList<FavBook>();
+		BookList favBookList = new BookList();
 		
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
@@ -109,7 +113,7 @@ public class FavoritelistDAO {
 			
 			
 			int i = 0;
-			String sql = "SELECT favBookId, userId, favoritebooklist.statusId, statuslist.status, memo,  favoritebooklist.bookId,booklist.bookTitle, isbn, booklist.creatorId, creatorlist.creatorName, booklist.publisherId, publisherlist.publisherName, booklist.categoryId, categorylist.categoryName  FROM favoritebooklist JOIN booklist ON favoritebooklist.bookId = booklist.bookListId JOIN publisherlist ON booklist.publisherId = publisherlist.publisherId JOIN creatorlist ON booklist.creatorId = creatorlist.creatorId JOIN categorylist ON booklist.categoryId = categorylist.categoryId JOIN statuslist ON favoritebooklist.statusId = statuslist.statusId";
+			String sql = "SELECT favBookId, userId, favoritebooklist.statusId, statuslist.status, memo,  favoritebooklist.bookId,booklist.bookTitle, isbn, bookidcreatoridlist.creatorId, creatorlist.creatorName, booklist.publisherId, publisherlist.publisherName, bookidcategoryidlist.categoryId, categorylist.categoryName FROM favoritebooklist JOIN booklist ON favoritebooklist.bookId = booklist.bookListId JOIN publisherlist ON booklist.publisherId = publisherlist.publisherId JOIN bookidcreatoridlist ON booklist.bookListId = bookidcreatoridlist.bookListId JOIN bookidcategoryidlist ON booklist.bookListId = bookidcategoryidlist.bookListId JOIN creatorlist ON bookidcreatoridlist.creatorId = creatorlist.creatorId JOIN categorylist ON bookidcategoryidlist.categoryId = categorylist.categoryId JOIN statuslist ON favoritebooklist.statusId = statuslist.statusId";
 			
 			
 			if (!(user.getUserId() == null || user.getUserId().equals(""))) {
@@ -216,8 +220,153 @@ public class FavoritelistDAO {
 		}
 		return favBookList;
 	}
+	
+	
+	
+	public FavBook listFavBook(User user, Book book) {
+		readDriver();
+		ResultSet rs = null;
+		BookList favBookList = new BookList();
+		FavBook favBook = new FavBook(book);
+		
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			
+			
+			
+			int i = 0;
+			String sql = "SELECT favBookId, favoritebooklist.statusId, statuslist.status, memo FROM favoritebooklist JOIN statuslist ON favoritebooklist.statusId = statuslist.statusId";
+			
+			
+			if (!(user.getUserId() == null || user.getUserId().equals(""))) {
+				sql = AddAND(i, sql);
+				sql += " userId = ?";
+				i++;
+			}
+			if (!(book.getBookId() == 0)) {
+				sql = AddAND(i, sql);
+				sql += " bookId LIKE ?";
+				i++;
+			}
+			sql += ";";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			
+			
+			
+			int j = 0;
+			if (!(user.getUserId() == null || user.getUserId().equals(""))) {
+				j++;
+				pStmt.setString(j, user.getUserId());
+			}
+			if (!(book.getBookId() == 0)){
+				j++;
+				pStmt.setInt(j, book.getBookId());
+			}
 
+			
+			
+			
+			
+			
+			
+			
+			
+
+			System.out.println(pStmt);
+			rs = pStmt.executeQuery();
+			System.out.println("rs:" + rs);
+			
+			while (rs.next()) {
+
+				StrToInt strToInt = new StrToInt();
+				int favBookId = strToInt.StrToIntLog(rs.getString("favBookId"));
+				int statusId = strToInt.StrToIntLog(rs.getString("statusId"));
+				String statusStr = rs.getString("status");
+				System.out.println("BookListId:"+book.getBookId());
+				System.out.println("FavBookId:"+favBookId);
+				Status status = new Status(statusId, statusStr);
+				String memo = rs.getString("memo");
+				if (!(favBookId == 0)) {
+					favBook = new FavBook(book);
+					favBook.setFavBookId(favBookId);
+					favBook.setStatus(status);
+					favBook.setMemo(memo);
+					favBookList.add(favBook);
+					System.out.println(favBookId);
+					System.out.println(favBook);
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return favBook;
+	}
 	
 	
+	
+	
+
+	public int UpdFavBook(FavBook favBook, User user) {
+		readDriver();
+		int rs = 0;
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "UPDATE favoritebooklist SET statusId = ? , memo=? WHERE favBookId = ?;";
+			int favBookId = favBook.getFavBookId();
+			System.out.println(favBookId);
+			String memo = favBook.getMemo();
+			int statusId = favBook.getStatus().getStatusId();
+			
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, statusId);
+			System.out.println("++++++++++++++++++++;;");
+			pStmt.setString(2, memo);
+			System.out.println("++++++++++++++++++++;;");
+			pStmt.setInt(3, favBookId);
+			System.out.println(pStmt);
+			rs = pStmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return rs;
+
+	}
+	
+	
+	
+	public int AddFavBook(FavBook favBook, User user) {
+		readDriver();
+		int rs = 0;
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "INSERT INTO favoritebooklist (bookId, userId, statusId, memo) VALUE(?,?,?,?);";
+			int bookId = favBook.getBookId();
+			System.out.println(bookId);
+			String userId = user.getUserId();
+			int statusId = favBook.getStatus().getStatusId();
+			String memo = favBook.getMemo();
+			
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			System.out.println("++++++++++++++++++++;;");
+			System.out.println(bookId);
+			pStmt.setInt(1, bookId);
+			System.out.println("++++++++++++++++++++;;");
+			pStmt.setString(2, userId);
+			System.out.println("++++++++++++++++++++;;");
+			pStmt.setInt(3, statusId);
+			System.out.println("++++++++++++++++++++;;");
+			pStmt.setString(4, memo);
+			System.out.println("++++++++++++++++++++;;");
+			System.out.println(pStmt);
+			rs = pStmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return rs;
+
+	}
 
 }

@@ -13,10 +13,43 @@ public class Book implements Serializable {
 	private String recordCategory;
 	private String recordSubCategory;
 
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public void setRecordCategory(String recordCategory) {
+		this.recordCategory = recordCategory;
+	}
+	public void setRecordSubCategory(String recordSubCategory) {
+		this.recordSubCategory = recordSubCategory;
+	}
 	public Book() {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
+	public Book(String bookTitle, String isbn, Creator creator, Publisher publisher, Category category) {
+		this.bookId = bookId;
+		this.bookTitle = bookTitle;
+		this.isbn = isbn;
+		//		this.creator.add(creator);
+		this.creator = creator;
+		this.publisher = publisher;
+		this.category = category;
 
+	}
 	public Book(int bookId, String bookTitle, String isbn, Creator creator, Publisher publisher, Category category) {
 		this.bookId = bookId;
 		this.bookTitle = bookTitle;

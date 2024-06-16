@@ -20,6 +20,11 @@ public class FavBook extends Book {
 	public FavBook() {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
+	public FavBook(Book book) {
+		// TODO 自動生成されたコンストラクター・スタブ
+		super(book.getBookId(),book.getBookTitle(),book.getIsbn(),book.getCreator(),book.getPublisher(),book.getCategory());
+	}
+	
 
 	public FavBook(int bookId, String bookTitle, String isbn, Creator creator, Publisher publisher, Category category) {
 		super(bookId, bookTitle, isbn, creator, publisher, category);
@@ -31,6 +36,18 @@ public class FavBook extends Book {
 		// TODO 自動生成されたコンストラクター・スタブ
 		this.favBookId = favBookId;
 		this.status = status;
+		this.memo = memo;
+	}
+
+	public void setFavBookId(int favBookId) {
+		this.favBookId = favBookId;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public void setMemo(String memo) {
 		this.memo = memo;
 	}
 }

@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 		
 		User user = new User(userId, pass);
-		
+		String forward = null;
 		
 		LoginLogic loginLogic = new LoginLogic();
 		LoginUser loginUser = loginLogic.login(user);
@@ -47,12 +47,14 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("loginUser", loginUser);
 		
 		if(loginUser != null) {
+			forward = "WEB-INF/jsp/userMenu.jsp";
 			System.out.println("login成功");
 		}else {
+			forward = "WEB-INF/jsp/loginForm.jsp";
 			System.out.println("login失敗");
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/userMenu.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 		dispatcher.forward(request, response);
 		
 		

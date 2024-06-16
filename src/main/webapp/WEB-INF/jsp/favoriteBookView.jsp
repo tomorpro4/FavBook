@@ -26,6 +26,7 @@
 <td><%= favBookList.get(i).getPublisher().getPublisherName() %></td>
 <td><%= favBookList.get(i).getStatus().getStatus() %></td>
 <td><%= favBookList.get(i).getIsbn() %></td>
+<td><%= favBookList.get(i).getMemo() %>
 </tr>
 <% } %>
 

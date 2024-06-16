@@ -12,7 +12,7 @@ import model.User;
 public class UserDAO {
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/favorite_book";
 	private final String DB_USER = "root";
-	private final String DB_PASS = "0322ja";
+	private final String DB_PASS = "Tomo_20050124";
 
 	public void readDriver() {
 		try {

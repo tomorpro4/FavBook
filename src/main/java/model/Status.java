@@ -18,8 +18,8 @@ public class Status {
 		case 5 -> this.status = "読み終わった";
 		case 6 -> this.status = "積読";
 		default -> {
-			this.statusId = 0;
-			this.status = "とりあえず";
+			this.statusId = 9;
+			this.status = "";
 		}
 		}
 	}
