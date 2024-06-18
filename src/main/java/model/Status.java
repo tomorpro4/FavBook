@@ -10,15 +10,15 @@ public class Status {
 	public Status(int statusId) {
 		this.statusId = statusId;
 		switch (statusId) {
-		case 0 -> this.status = "とりあえず";
-		case 1 -> this.status = "ちょっと気になる";
-		case 2 -> this.status = "気になる";
-		case 3 -> this.status = "超気になる";
-		case 4 -> this.status = "読んでる";
-		case 5 -> this.status = "読み終わった";
-		case 6 -> this.status = "積読";
+		case 1 -> this.status = "とりあえず";
+		case 2 -> this.status = "ちょっと気になる";
+		case 3 -> this.status = "気になる";
+		case 4 -> this.status = "超気になる";
+		case 5 -> this.status = "読んでる";
+		case 6 -> this.status = "読み終わった";
+		case 7 -> this.status = "積読";
 		default -> {
-			this.statusId = 9;
+			this.statusId = 0;
 			this.status = "";
 		}
 		}

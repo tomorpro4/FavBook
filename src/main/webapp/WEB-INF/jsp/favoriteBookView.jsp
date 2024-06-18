@@ -20,7 +20,11 @@
 <% for(int i=0;i<favBookList.size();i++){ %>
 
 <tr>
-
+<td>
+<% if(!favBookList.get(i).getIsbn().equals("")){ %>
+<%="<img src=\"https://ndlsearch.ndl.go.jp/thumbnail/" %><%= favBookList.get(i).getIsbn() %><%=".jpg\">" %>
+<% } %>
+</td>
 <td><%= favBookList.get(i).getBookTitle() %></td>
 <td><%= favBookList.get(i).getCreator().getCreatorName() %></td>
 <td><%= favBookList.get(i).getPublisher().getPublisherName() %></td>
@@ -31,6 +35,7 @@
 <% } %>
 
 </table>
+<a href="MainMenuServlet">メインメニュー</a>
 
 </body>
 </html>

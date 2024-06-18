@@ -17,7 +17,7 @@ public class BookListDAO {
 
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/favorite_book";
 	private final String DB_USER = "root";
-	private final String DB_PASS = "Tomo_20050124";
+	private final String DB_PASS = "0322ja";
 
 	public void readDriver() {
 		try {

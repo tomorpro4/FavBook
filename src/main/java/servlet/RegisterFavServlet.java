@@ -37,8 +37,9 @@ public class RegisterFavServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("FavoriteBookViewServlet");
+//		dispatcher.forward(request, response);
+		response.sendRedirect("FavoriteBookViewServlet");	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +47,8 @@ public class RegisterFavServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		BookList bookList = (BookList)session.getAttribute("bookList");
+		BookList bookList = (BookList)session.getAttribute("bookList2");
+//		BookList bookList = (BookList)request.getAttribute("bookList");
 		Keyword keyword = (Keyword)session.getAttribute("keyword");
 		User user = (User)session.getAttribute("loginUser");
 		int max = keyword.getMaximumRecords();
@@ -54,9 +56,9 @@ public class RegisterFavServlet extends HttpServlet {
 //		ArrayList<Integer> statusList = new ArrayList<Integer>();
 		for(int i=0;i<max;i++) {
 			String statusId = request.getParameter("status" + (i+1));
-			System.out.println("status" + statusId);
+			System.out.println("status取得" + statusId);
 			
-			if(!(statusId == null || statusId.equals("") || statusId.equals("not"))) {
+			if(!(statusId == null || statusId.equals("") || statusId.equals("0"))) {
 				Status status = new Status(Integer.parseInt(statusId));
 				String memo = request.getParameter("memo" + (i+1));
 				bookList.get(i).setStatus(status);
@@ -76,7 +78,7 @@ public class RegisterFavServlet extends HttpServlet {
 			System.out.println(":");
 		}
 		
-		
+
 		
 		
 		doGet(request, response);

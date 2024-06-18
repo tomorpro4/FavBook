@@ -25,6 +25,8 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+//		String from = "login";
+//		request.setAttribute("from", from);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/loginForm.jsp");
 		dispatcher.forward(request, response);
 		
@@ -47,15 +49,17 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("loginUser", loginUser);
 		
 		if(loginUser != null) {
-			forward = "WEB-INF/jsp/userMenu.jsp";
+			forward = "MainMenuServlet";
 			System.out.println("login成功");
+			response.sendRedirect(forward);
 		}else {
 			forward = "WEB-INF/jsp/loginForm.jsp";
 			System.out.println("login失敗");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+			dispatcher.forward(request, response);
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
-		dispatcher.forward(request, response);
+
 		
 		
 		

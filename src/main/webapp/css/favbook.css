@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.book-img{
+	width: 15vw;
+	font-size: 10vw;
+}
+table{
+	font-size: calc(1rem + 0.5vw);
+}
+
+
+table .table-img{
+	width: 13vw;
+}
+
+table .table-head{
+	width: 13vw;
+}
+
+table .table-text1{
+	width: 54vw;
+}
+
+table .table-text2{
+	width: 23vw;
+}
+
+table .table-text3{
+	width: 18vw;
+}
+
+table .table-input{
+	width: 67vw;
+}
+
+#submit-button{
+	margin: 0 0 0 auto;
+}
