@@ -3,6 +3,29 @@
 <%@page import="model.BookList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% BookList bookList = (BookList)request.getAttribute("bookList"); %>
+<% Keyword keyword = (Keyword)session.getAttribute("keyword"); %>
+
+<% String keywordTitle = ""; %>
+<% String keywordIsbn = ""; %>
+<% String keywordCreator = ""; %>
+<% String keywordPublisher = ""; %>
+<% String keywordCategory = ""; %>
+
+<% if(keyword != null){ %>
+<% keywordTitle = keyword.getTitle(); %>
+<% if(keywordTitle == null) keywordTitle = ""; %>
+<% keywordIsbn = keyword.getIsbn(); %>
+<% if(keywordIsbn == null) keywordIsbn = ""; %>
+<% keywordCreator = keyword.getCreator(); %>
+<% if(keywordCreator == null) keywordCreator = ""; %>
+<% keywordPublisher = keyword.getPublisher(); %>
+<% if(keywordPublisher == null) keywordPublisher = ""; %>
+<% keywordCategory = keyword.getCategory(); %>
+<% if(keywordCategory == null) keywordCategory = ""; %>
+<% } %>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,7 +41,7 @@
 <form action="SearchBookServlet" method="post">
 <div class="m-3">
 Title<br>
-<input type="text" name="bookTitle" class="form-control">
+<input type="text" name="bookTitle" class="form-control" value="<%= keywordTitle%>">
 <select name="bookTitleCon">
 <option value="0">部分一致（AND）</option>
 <option value="1">部分一致（OR）</option>
@@ -26,10 +49,10 @@ Title<br>
 <option value="3">完全一致</option>
 </select><br>
 ISBN<br>
-<input type="text" name="isbn" class="form-control">
+<input type="text" name="isbn" class="form-control" value="<%= keywordIsbn%>">
 <input type="hidden" name="isbnCon">
 著者<br>
-<input type="text" name="creatorName" class="form-control">
+<input type="text" name="creatorName" class="form-control" value="<%= keywordCreator%>">
 <select name="creatorNameCon">
 <option value="0">部分一致（AND）</option>
 <option value="1">部分一致（OR）</option>
@@ -37,7 +60,7 @@ ISBN<br>
 <option value="3">完全一致</option>
 </select><br>
 出版社<br>
-<input type="text" name="publisherName" class="form-control">
+<input type="text" name="publisherName" class="form-control" value="<%= keywordPublisher%>">
 <select name="publisherNameCon">
 <option value="0">部分一致（AND）</option>
 <option value="1">部分一致（OR）</option>
@@ -45,7 +68,7 @@ ISBN<br>
 <option value="3">完全一致</option>
 </select><br>
 カテゴリー<br>
-<input type="text" name="categoryName" class="form-control">
+<input type="text" name="categoryName" class="form-control"  value="<%= keywordCategory%>">
 <select name="categoryNameCon">
 <option value="0">部分一致（AND）</option>
 <option value="1">部分一致（OR）</option>
@@ -65,8 +88,6 @@ ISBN<br>
 
 
 <form action="RegisterFavServlet" method="post">
-<% BookList bookList = (BookList)request.getAttribute("bookList"); %>
-<% Keyword keyword = (Keyword)session.getAttribute("keyword"); %>
 
 <% if(bookList != null){ %>
 <%= bookList.getNumberOfRecord() %><br>
