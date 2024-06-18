@@ -18,7 +18,7 @@ import model.LoginUser;
 /**
  * Servlet implementation class FavoriteBookView
  */
-@WebServlet("/FavoriteBookViewServlet")
+@WebServlet("/Favorite/FavoriteBookViewServlet")
 public class FavoriteBookViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,7 @@ public class FavoriteBookViewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/favoriteBookView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("../WEB-INF/jsp/favoriteBookView.jsp");
 		HttpSession session = request.getSession();
 		LoginUser loginUser = (LoginUser)session.getAttribute("loginUser");
 		FavoriteBookListLogic favoriteBookListLogic = new FavoriteBookListLogic();

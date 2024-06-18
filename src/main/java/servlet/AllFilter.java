@@ -19,7 +19,7 @@ import model.LoginUser;
 /**
  * Servlet Filter implementation class AllFilter
  */
-@WebFilter("/*")
+@WebFilter("/Favorite/*")
 public class AllFilter extends HttpFilter implements Filter {
        
     /**
@@ -60,7 +60,7 @@ public class AllFilter extends HttpFilter implements Filter {
 //		if(loginUser == null && from == null) {
 			System.out.println("Servlet前フィルタ実行");
 //			((HttpServletResponse)response).sendRedirect("LoginServlet");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("LoginServlet");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("../LoginServlet");
 			dispatcher.forward(request, response);
 		}else {
 			chain.doFilter(request, response);

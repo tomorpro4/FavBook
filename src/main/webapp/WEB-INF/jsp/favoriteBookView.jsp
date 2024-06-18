@@ -35,7 +35,7 @@
 <% } %>
 
 </table>
-<a href="MainMenuServlet">メインメニュー</a>
+<a href="../MainMenuServlet">メインメニュー</a>
 
 </body>
 </html>

@@ -88,7 +88,7 @@ ISBN<br>
 </form>
 
 
-<form action="RegisterFavServlet" method="post">
+<form action="Favorite/RegisterFavServlet" method="post">
 
 <% if(bookList != null){ %>
 <%= bookList.getNumberOfRecord() %><br>

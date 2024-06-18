@@ -20,7 +20,7 @@ import model.User;
 /**
  * Servlet implementation class RegisterFavServlet
  */
-@WebServlet("/RegisterFavServlet")
+@WebServlet("/Favorite/RegisterFavServlet")
 public class RegisterFavServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
