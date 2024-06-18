@@ -90,14 +90,17 @@ public class XmlToBookLogic {
 	public String GetBookCreator(Element recordElement) {
 		String bookCreator = "";
 		String bookCreatorTranscription = "";
-		NodeList recordBookCreatorNodeList = recordElement.getElementsByTagName("dcterms:creator");
+//		NodeList recordBookCreatorNodeList = recordElement.getElementsByTagName("dcterms:creator");
+		NodeList recordBookCreatorNodeList = recordElement.getElementsByTagName("dc:creator");
 		if (recordBookCreatorNodeList.getLength() > 0) {
 			Element bookCreatorElement = (Element) recordBookCreatorNodeList.item(0);
-			bookCreator = GetName(bookCreatorElement);
+//			bookCreator = GetName(bookCreatorElement);
+			bookCreator = bookCreatorElement.getTextContent();
 			bookCreatorTranscription = GetTranscription(bookCreatorElement);
 		}
 
 		System.out.println(bookCreatorTranscription);
+		System.out.println(bookCreator);
 
 		return bookCreator;
 	}
@@ -217,7 +220,7 @@ public class XmlToBookLogic {
 		String xmlStr = xmLmodel.getXmlStr();
 		BookList bookList = new BookList();
 		try {
-			System.out.println(xmlStr);
+//			System.out.println(xmlStr);
 			Document document = toDocument(xmlStr);
 			Element xmlElement = document.getDocumentElement();
 

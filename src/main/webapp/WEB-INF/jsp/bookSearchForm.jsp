@@ -38,7 +38,7 @@
 </head>
 <body>
 本の検索<br>
-<form action="SearchBookServlet" method="post">
+<form action="SearchBookServlet" method="get">
 <div class="m-3">
 Title<br>
 <input type="text" name="bookTitle" class="form-control" value="<%= keywordTitle%>">
@@ -83,6 +83,7 @@ ISBN<br>
 <input type="hidden" name="startRecord" value="1">
 -->
 </div>
+<input type="hidden" name="action" value="search">
 <button type="submit" class="btn btn-primary">検索</button>
 </form>
 
@@ -176,11 +177,12 @@ ISBN
 <button type="submit"　id="submit-button">登録</button><br>
 
 <% if(bookList.getNextRecord()-(keyword.getMaximumRecords()*2)>0){ %>
-<a href="SearchBookServlet?nextPosition=<%= bookList.getNextRecord()-(keyword.getMaximumRecords()*2) %>">前へ</a>
+<a href="SearchBookServlet?bookTitle=<%= keyword.getTitle() %>&bookTitleCon=<%= keyword.getTitleCon() %>&isbn=<%= keyword.getIsbn() %>&isbnCon=<%= keyword.getIsbnCon() %>&creatorName=<%= keyword.getCreator() %>&creatorNameCon=<%= keyword.getCreatorCon() %>&publisherName=<%= keyword.getPublisher() %>&publisherNameCon=<%= keyword.getPublisherCon() %>&categoryName=<%= keyword.getCategory() %>&categoryNameCon=<%= keyword.getCategoryCon() %>&maximumRecords=<%= keyword.getMaximumRecords() %>&nextPosition=<%= bookList.getNextRecord()-(keyword.getMaximumRecords()*2) %>">前へ</a>
+action=search
 <% }else{ %>
 前へ
 <% } %>
-<a href="SearchBookServlet?nextPosition=<%= bookList.getNextRecord() %>">次へ</a>
+<a href="SearchBookServlet?bookTitle=<%= keyword.getTitle() %>&bookTitleCon=<%= keyword.getTitleCon() %>&isbn=<%= keyword.getIsbn() %>&isbnCon=<%= keyword.getIsbnCon() %>&creatorName=<%= keyword.getCreator() %>&creatorNameCon=<%= keyword.getCreatorCon() %>&publisherName=<%= keyword.getPublisher() %>&publisherNameCon=<%= keyword.getPublisherCon() %>&categoryName=<%= keyword.getCategory() %>&categoryNameCon=<%= keyword.getCategoryCon() %>&maximumRecords=<%= keyword.getMaximumRecords() %>&nextPosition=<%= bookList.getNextRecord() %>">次へ</a>
 <% } %>
 </form>
 

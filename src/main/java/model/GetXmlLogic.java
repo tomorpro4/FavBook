@@ -31,7 +31,7 @@ public class GetXmlLogic {
 				}
 				in.close();
 				xmlStr = sb.toString();
-				System.out.println(xmlStr); // ④JSON形式で結果を取得 
+//				System.out.println(xmlStr); // ④JSON形式で結果を取得 
 				System.out.println(url);
 			}
 			con.disconnect();
