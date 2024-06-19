@@ -27,7 +27,15 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		String from = "login";
 //		request.setAttribute("from", from);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/loginForm.jsp");
+		
+		HttpSession session = request.getSession();
+		String forward = "WEB-INF/jsp/loginForm.jsp";
+		String aaa = (String)session.getAttribute("aaa");
+		
+		
+		
+		System.out.println("REFERER"+response.getHeader("REFERER"));
+		RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 		dispatcher.forward(request, response);
 		
 		
@@ -37,16 +45,34 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		String forward = null;
+
+		String aaa = (String)session.getAttribute("aaa");
+		if(aaa != null) System.out.println("POSTaaa:"+aaa);
+
+		if(aaa != null) {
+			if(aaa.equals("aaa")) {
+				forward = "Favorite/RegisterFavServlet";
+				System.out.println("GETaaa:"+aaa);
+			}
+		}
+		
+		
+		
 		String userId = request.getParameter("userId");
 		String pass = request.getParameter("pass");
 		
 		User user = new User(userId, pass);
-		String forward = null;
 		
 		LoginLogic loginLogic = new LoginLogic();
 		LoginUser loginUser = loginLogic.login(user);
-		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", loginUser);
+		
+		
+		if(aaa.equals("aaa")) {
+			response.sendRedirect(forward);
+		}else {
 		
 		if(loginUser != null) {
 			forward = "MainMenuServlet";
@@ -58,7 +84,7 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 			dispatcher.forward(request, response);
 		}
-		
+		}
 
 		
 		
