@@ -38,9 +38,9 @@ public class FavoriteBookListDAOsearchTest {
 //		FavoritelistDAO favoritelistDAO = new FavoritelistDAO();
 //		FavBook favBook = favoritelistDAO.listFavBook(user, book);
 //		if(favBook.getFavBookId() != 0) {
-//			System.out.println(favBook.getBookId());
+//			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBook.getBookId());
 //		}else {
-//			System.out.println("未登録");
+//			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"未登録");
 //		}
 		
 		AddFavBookLogic addFavBookLogic = new AddFavBookLogic();

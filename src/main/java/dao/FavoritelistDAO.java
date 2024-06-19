@@ -68,9 +68,9 @@ public class FavoritelistDAO {
 				pStmt.setString(j, user.getUserId());
 			}
 
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeQuery();
-			System.out.println("rs:" + rs);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"rs:" + rs);
 			while (rs.next()) {
 				int favBookId = Integer.parseInt(rs.getString("favBookId"));
 				int statusId = Integer.parseInt(rs.getString("statusId"));
@@ -92,7 +92,7 @@ public class FavoritelistDAO {
 				if (!(bookTitle == null || bookTitle.equals(""))) {
 					FavBook favBook = new FavBook(favBookId, status, memo, bookId, bookTitle, isbn, creator, publisher, category);
 					favBookList.add(favBook);
-					System.out.println(favBookId);
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBookId);
 				}
 			}
 			
@@ -187,9 +187,9 @@ public class FavoritelistDAO {
 			
 			
 			
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeQuery();
-			System.out.println("rs:" + rs);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"rs:" + rs);
 			while (rs.next()) {
 				int favBookId = Integer.parseInt(rs.getString("favBookId"));
 				int statusId = Integer.parseInt(rs.getString("statusId"));
@@ -211,7 +211,7 @@ public class FavoritelistDAO {
 				if (!(bookTitle == null || bookTitle.equals(""))) {
 					FavBook favBook = new FavBook(favBookId, status, memo, bookId, bookTitle, isbn, creator, publisher, category);
 					favBookList.add(favBook);
-					System.out.println(favBookId);
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBookId);
 				}
 			}
 			
@@ -272,9 +272,9 @@ public class FavoritelistDAO {
 			
 			
 
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeQuery();
-			System.out.println("rs:" + rs);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"rs:" + rs);
 			
 			while (rs.next()) {
 
@@ -282,8 +282,8 @@ public class FavoritelistDAO {
 				int favBookId = strToInt.StrToIntLog(rs.getString("favBookId"));
 				int statusId = strToInt.StrToIntLog(rs.getString("statusId"));
 				String statusStr = rs.getString("status");
-				System.out.println("BookListId:"+book.getBookId());
-				System.out.println("FavBookId:"+favBookId);
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"BookListId:"+book.getBookId());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"FavBookId:"+favBookId);
 				Status status = new Status(statusId, statusStr);
 				String memo = rs.getString("memo");
 				if (!(favBookId == 0)) {
@@ -292,8 +292,8 @@ public class FavoritelistDAO {
 					favBook.setStatus(status);
 					favBook.setMemo(memo);
 					favBookList.add(favBook);
-					System.out.println(favBookId);
-					System.out.println(favBook);
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBookId);
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBook);
 				}
 			}
 
@@ -313,17 +313,17 @@ public class FavoritelistDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			String sql = "UPDATE favoritebooklist SET statusId = ? , memo=? WHERE favBookId = ?;";
 			int favBookId = favBook.getFavBookId();
-			System.out.println(favBookId);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBookId);
 			String memo = favBook.getMemo();
 			int statusId = favBook.getStatus().getStatusId();
 			
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, statusId);
-			System.out.println("++++++++++++++++++++;;");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"++++++++++++++++++++;;");
 			pStmt.setString(2, memo);
-			System.out.println("++++++++++++++++++++;;");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"++++++++++++++++++++;;");
 			pStmt.setInt(3, favBookId);
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -342,23 +342,23 @@ public class FavoritelistDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			String sql = "INSERT INTO favoritebooklist (bookId, userId, statusId, memo) VALUE(?,?,?,?);";
 			int bookId = favBook.getBookId();
-			System.out.println(bookId);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookId);
 			String userId = user.getUserId();
 			int statusId = favBook.getStatus().getStatusId();
 			String memo = favBook.getMemo();
 			
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			System.out.println("++++++++++++++++++++;;");
-			System.out.println(bookId);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"++++++++++++++++++++;;");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookId);
 			pStmt.setInt(1, bookId);
-			System.out.println("++++++++++++++++++++;;");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"++++++++++++++++++++;;");
 			pStmt.setString(2, userId);
-			System.out.println("++++++++++++++++++++;;");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"++++++++++++++++++++;;");
 			pStmt.setInt(3, statusId);
-			System.out.println("++++++++++++++++++++;;");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"++++++++++++++++++++;;");
 			pStmt.setString(4, memo);
-			System.out.println("++++++++++++++++++++;;");
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"++++++++++++++++++++;;");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeUpdate();
 			
 		} catch (SQLException e) {

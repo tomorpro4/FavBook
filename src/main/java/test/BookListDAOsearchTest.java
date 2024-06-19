@@ -31,7 +31,7 @@ public class BookListDAOsearchTest {
 		SearchBookLogic searchBookLogic = new SearchBookLogic();
 		
 		int id = searchBookLogic.SearchBook(book);
-		System.out.println(id	);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+id	);
 	}
 	
 	public static void BookSearchOK() {
@@ -50,12 +50,12 @@ public class BookListDAOsearchTest {
 		BookListDAO bookListDAO = new BookListDAO();
 		ArrayList<Book> bookList = bookListDAO.searchBook(keyword);
 		for(int i=0;i<bookList.size();i++) {
-			System.out.println(bookList.get(i).getBookId());
-			System.out.println(bookList.get(i).getBookTitle());
-			System.out.println(bookList.get(i).getIsbn());
-			System.out.println(bookList.get(i).getCreator().getCreatorName());
-			System.out.println(bookList.get(i).getPublisher().getPublisherName());
-			System.out.println(bookList.get(i).getCategory().getCategoryName());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookList.get(i).getBookId());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookList.get(i).getBookTitle());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookList.get(i).getIsbn());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookList.get(i).getCreator().getCreatorName());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookList.get(i).getPublisher().getPublisherName());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookList.get(i).getCategory().getCategoryName());
 			
 		}
 	}

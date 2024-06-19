@@ -32,7 +32,7 @@ public class bookidcategoryidlistDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, bookListId);
 			pStmt.setInt(2, categoryId);
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeUpdate();
 			
 		} catch (SQLException e) {

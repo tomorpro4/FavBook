@@ -27,6 +27,26 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		String from = "login";
 //		request.setAttribute("from", from);
+		HttpSession session = request.getSession();
+		String moto = (String)session.getAttribute("moto");
+		System.out.println();
+        System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+new Throwable().getStackTrace()[0].getLineNumber());
+		if(moto == null) {
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"リクエストスコープからmoto取得できなかった");
+
+			moto = request.getHeader("REFERER");
+		}else {
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"リクエストスコープからmoto取得");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+moto);
+		}
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"遷移元："+moto);
+		if(moto !=null && !moto.contains("LoginServlet")) {
+			if(moto.equals("")) {
+				moto = "MainMenuServlet";
+			}
+			session.setAttribute("moto", moto);
+			
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/loginForm.jsp");
 		dispatcher.forward(request, response);
 		
@@ -47,14 +67,25 @@ public class LoginServlet extends HttpServlet {
 		LoginUser loginUser = loginLogic.login(user);
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", loginUser);
+		String moto = (String)session.getAttribute("moto");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		if(loginUser != null) {
-			forward = "MainMenuServlet";
-			System.out.println("login成功");
+			forward = moto;
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"login成功");
 			response.sendRedirect(forward);
 		}else {
 			forward = "WEB-INF/jsp/loginForm.jsp";
-			System.out.println("login失敗");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"login失敗");
 			RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 			dispatcher.forward(request, response);
 		}

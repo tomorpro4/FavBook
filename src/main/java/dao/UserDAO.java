@@ -34,17 +34,17 @@ public class UserDAO {
 			pStmt.setString(1, user.getUserId());
 			pStmt.setString(2, user.getEmail());
 			pStmt.setString(3, user.getPass());
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeQuery();
-			System.out.println("rs:" + rs);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"rs:" + rs);
 			while(rs.next()) {
 				String userId = rs.getString("userId");
 				String pass = rs.getString("pass");
 				String name = rs.getString("name");
 				String email = rs.getString("email");
-				System.out.println(email);
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+email);
 				loginUser = new LoginUser(userId, email, pass, name);
-				System.out.println(loginUser.getEmail());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+loginUser.getEmail());
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -66,7 +66,7 @@ public class UserDAO {
 			pStmt.setString(2, newUser.getEmail());
 			pStmt.setString(3, newUser.getPass());
 			pStmt.setString(4, newUser.getName());
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 
 			rs = pStmt.executeUpdate();
 			if(rs>0) {

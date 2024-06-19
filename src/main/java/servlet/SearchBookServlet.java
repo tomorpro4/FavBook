@@ -43,17 +43,17 @@ public class SearchBookServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/bookSearchForm.jsp");
 				dispatcher.forward(request, response);
 			} else {
-				System.out.println("getマックス" + keyword.getMaximumRecords());
-				System.out.println("doPostに転送");
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"getマックス" + keyword.getMaximumRecords());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"doPostに転送");
 				keyword.setStartRecord(Integer.parseInt(nextPosition));
 				BookList bookList = (BookList) request.getAttribute("bookList");
 				//			keyword.setMaximumRecords(0)
 				session.setAttribute("keyword", keyword);
-				System.out.println("移動します");
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"移動します");
 				searchBook(request, response);
 			}
 		}else {
-			System.out.println("else");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"else");
 			searchBook(request, response);
 
 		}
@@ -69,10 +69,10 @@ public class SearchBookServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		String bookTitle = request.getParameter("bookTitle");
-		System.out.println("移動しました");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"移動しました");
 		StrToInt strToInt = new StrToInt();
 		int bookTitleCon = strToInt.StrToIntLog(request.getParameter("bookTitleCon"));
-		System.out.println("移動しました");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"移動しました");
 		String isbn = request.getParameter("isbn");
 		String creatorName = request.getParameter("creatorName");
 		int creatorNameCon = strToInt.StrToIntLog(request.getParameter("creatorNameCon"));
@@ -91,14 +91,14 @@ public class SearchBookServlet extends HttpServlet {
 		}
 
 		if (keyword == null || startRecord == null) {
-			System.out.println("ここは大丈夫そう");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"ここは大丈夫そう");
 			startRecord = "1";
 			keyword = new Keyword(bookTitleCon, bookTitle, 3, isbn, creatorNameCon, creatorName, publisherNameCon,
 					publisherName, categoryNameCon, categoryName);
-			System.out.println("ここは怪しい");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"ここは怪しい");
 			keyword.setMaximumRecords(Integer.parseInt(maximumRecords));
 		} else {
-			System.out.println("ここは怪しい");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"ここは怪しい");
 			//			maximumRecords = String.valueOf(keyword.getMaximumRecords());
 			//			startRecord = String.valueOf(keyword.getStartRecord());
 		}
@@ -109,25 +109,25 @@ public class SearchBookServlet extends HttpServlet {
 		String urlStr = urlCreate.CreateSearchUrl(keyword);
 		GetXmlLogic getXmlLogic = new GetXmlLogic();
 		String xmlStr = getXmlLogic.GetXmlByUrl(urlStr);
-		System.out.println("SearchBookServlet;64");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"SearchBookServlet;64");
 		XMLmodel xmLmodel = new XMLmodel(xmlStr);
-		System.out.println("SearchBookServlet;65");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"SearchBookServlet;65");
 		XmlToBookLogic xmlToBookLogic = new XmlToBookLogic();
-		System.out.println("SearchBookServlet;67");
-		System.out.println("SearchBookServlet;69");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"SearchBookServlet;67");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"SearchBookServlet;69");
 		User user = (LoginUser) session.getAttribute("loginUser");
-		System.out.println("SearchBookServlet;72");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"SearchBookServlet;72");
 
 		//		BookList bookList = xmlToBookLogic.XmlToBookList(user, xmLmodel);
 		bookList = xmlToBookLogic.XmlToBookList(user, xmLmodel);
 		//		bookList = xmlToBookLogic.XmlToBookList(user, xmLmodel);
-		System.out.println("SearchBookServlet;69");
-		System.out.println("favbookiD");
-		//		System.out.println(((FavBook)bookList.get(0)).getFavBookId());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"SearchBookServlet;69");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"favbookiD");
+		//		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+((FavBook)bookList.get(0)).getFavBookId());
 		session.setAttribute("bookList2", bookList);
 		request.setAttribute("bookList", bookList);
 		//		keyword.setStartRecord(bookList.getNextRecord());
-		System.out.println("マックス:" + keyword.getMaximumRecords());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"マックス:" + keyword.getMaximumRecords());
 		session.setAttribute("keyword", keyword);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/bookSearchForm.jsp");

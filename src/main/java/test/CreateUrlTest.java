@@ -28,9 +28,9 @@ public class CreateUrlTest {
 		UrlCreate urlCreate = new UrlCreate();
 		
 		String urlStr = urlCreate.CreateSearchUrl(keyword);
-		System.out.println(urlCreate.getStartRecord());
-		System.out.println(urlCreate.getMaximumRecords());
-		System.out.println(urlStr);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+urlCreate.getStartRecord());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+urlCreate.getMaximumRecords());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+urlStr);
 	}
 
 }

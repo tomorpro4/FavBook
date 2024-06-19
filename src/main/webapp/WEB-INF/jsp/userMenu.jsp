@@ -16,6 +16,11 @@
 	<% } %>
 	<a href="SearchBookServlet">本を検索する</a><br>
 	<a href="Favorite/FavoriteBookViewServlet">	登録した本を見る</a><br>
+	
+	<% if(loginuUser != null){ %>
 	<a href="LogoutServlet">ログアウト</a><br>
+	<% }else{ %>
+	<a href="LoginServlet">ログイン</a><br>
+	<% } %>
 </body>
 </html>

@@ -82,7 +82,7 @@ public class XmlToBookLogic {
 			bookTitleTranscription = GetTranscription(bookTitleElement);
 		}
 
-		System.out.println(bookTitleTranscription);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookTitleTranscription);
 
 		return bookTitle;
 	}
@@ -99,8 +99,8 @@ public class XmlToBookLogic {
 			bookCreatorTranscription = GetTranscription(bookCreatorElement);
 		}
 
-		System.out.println(bookCreatorTranscription);
-		System.out.println(bookCreator);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookCreatorTranscription);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookCreator);
 
 		return bookCreator;
 	}
@@ -124,7 +124,7 @@ public class XmlToBookLogic {
 			bookCategory = GetValue(bookCategoryElement);
 			for (int i = 0; i < recordCategoryNodeList.getLength(); i++) {
 				bookCategoryList.add(GetValue((Element) recordCategoryNodeList.item(i)));
-				System.out.println(bookCategoryList.get(i));
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookCategoryList.get(i));
 			}
 		}
 		return bookCategory;
@@ -138,7 +138,7 @@ public class XmlToBookLogic {
 			for (int i = 0; i < recordIsbnNodeList.getLength(); i++) {
 				Element bookIsbnElement = (Element) recordIsbnNodeList.item(i);
 				String attributes = bookIsbnElement.getAttributes().item(0).getTextContent();
-				//				System.out.println(attributes);
+				//				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+attributes);
 				if (attributes.equals("http://ndl.go.jp/dcndl/terms/ISBN")) {
 					bookIsbn = bookIsbnElement.getTextContent();
 					bookIsbn = bookIsbn.replace("-", "");
@@ -151,31 +151,31 @@ public class XmlToBookLogic {
 
 	public Book RecordNodeToBook(Element recordElement) {
 
-		System.out.println("RecordNodeToBook");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"RecordNodeToBook");
 
 		String recordCategory = GetRecordCategory(recordElement);
-		System.out.println(recordCategory);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+recordCategory);
 
 		String recordSubCategory = GetRecordSubCategory(recordElement);
-		System.out.println(recordSubCategory);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+recordSubCategory);
 
 		String bookTitle = GetBookTitle(recordElement);
-		System.out.println(bookTitle);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookTitle);
 
 		String bookPublisher = GetPublisher(recordElement);
-		System.out.println(bookPublisher);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookPublisher);
 
 		String bookCreator = GetBookCreator(recordElement);
-		System.out.println(bookCreator);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookCreator);
 
 		String bookCategory = GetBookCategory(recordElement);
-		System.out.println(bookCategory);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookCategory);
 
 		String bookIsbn = GetBookIsbn(recordElement);
-		System.out.println("ISBN:");
-		System.out.println(bookIsbn);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"ISBN:");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookIsbn);
 
-		System.out.println("******************");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"******************");
 
 		Creator creator = new Creator(bookCreator);
 		creatorlistDAO creatorlistDAO = new creatorlistDAO();
@@ -204,14 +204,14 @@ public class XmlToBookLogic {
 		Keyword keyword = new Keyword(3, bookTitle, 3, bookIsbn, 3, creator.getCreatorName(), 3,
 				publisher.getPublisherName(), 3, category.getCategoryName());
 		ArrayList<Book> bookList = bookListDAO.searchBook(keyword);
-		System.out.println(bookList.size());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookList.size());
 		if (bookList.size() > 0) {
-			System.out.println("ISBNで検索した結果bookidは");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"ISBNで検索した結果bookidは");
 			book = bookList.get(0);
-			System.out.println(book.getBookId());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+book.getBookId());
 		}
 
-		System.out.println("===================");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"===================");
 		return book;
 
 	}
@@ -220,7 +220,7 @@ public class XmlToBookLogic {
 		String xmlStr = xmLmodel.getXmlStr();
 		BookList bookList = new BookList();
 		try {
-//			System.out.println(xmlStr);
+//			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+xmlStr);
 			Document document = toDocument(xmlStr);
 			Element xmlElement = document.getDocumentElement();
 
@@ -229,19 +229,19 @@ public class XmlToBookLogic {
 
 			if (errorNodeList.getLength() > 0) {
 				System.out.print("エラー：");
-				System.out.println(errorNodeList.item(0).getTextContent());
-				System.out.println(messageNodeList.item(0).getTextContent());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+errorNodeList.item(0).getTextContent());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+messageNodeList.item(0).getTextContent());
 			} else {
 
 				//version取得
 				Node vesionNode = xmlElement.getElementsByTagName("version").item(0);
-				System.out.println(vesionNode.getNodeName());
-				System.out.println(vesionNode.getTextContent());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+vesionNode.getNodeName());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+vesionNode.getTextContent());
 
 				//numberOfRecords取得
 				Node numberOfRecordsNode = xmlElement.getElementsByTagName("numberOfRecords").item(0);
-				System.out.println(numberOfRecordsNode.getNodeName());
-				System.out.println(numberOfRecordsNode.getTextContent());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+numberOfRecordsNode.getNodeName());
+				System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+numberOfRecordsNode.getTextContent());
 
 				int numberOfRecord = Integer.parseInt(numberOfRecordsNode.getTextContent());
 				bookList.setNumberOfRecord(numberOfRecord);
@@ -251,8 +251,8 @@ public class XmlToBookLogic {
 				int nextRecordPosition = 0;
 				if (nextRecordPositionNodeList.getLength() > 0) {
 					Node nextRecordPositionNode = nextRecordPositionNodeList.item(0);
-					System.out.println(nextRecordPositionNode.getNodeName());
-					System.out.println(nextRecordPositionNode.getTextContent());
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+nextRecordPositionNode.getNodeName());
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+nextRecordPositionNode.getTextContent());
 					nextRecordPosition = Integer.parseInt(nextRecordPositionNode.getTextContent());
 
 				}
@@ -264,15 +264,15 @@ public class XmlToBookLogic {
 					Element recordeNode = (Element) recordNodeList.item(i);
 					//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 					Book book = RecordNodeToBook(recordeNode);
-					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 					FavBook book2 = new FavBook(book);
-					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 					FavoritelistDAO favoritelistDAO = new FavoritelistDAO();
-					System.out.println("bookid");
-					System.out.println(book.getBookId());
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"bookid");
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+book.getBookId());
 					if (book.getBookId() != 0) {
 						FavBook favBook = favoritelistDAO.listFavBook(user, book);
-						System.out.println("favbook" + favBook);
+						System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"favbook" + favBook);
 						if (favBook != null) {
 							book2 = favBook;
 						}

@@ -72,9 +72,9 @@ public class publisherlistDAO {
 				pStmt.setInt(j, publisher.getPublisherId());
 			}
 
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeQuery();
-			System.out.println("rs:" + rs);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"rs:" + rs);
 			while (rs.next()) {
 				int publisherId = rs.getInt("publisherId");
 				String publisherName = rs.getString("publisherName");
@@ -111,9 +111,9 @@ public class publisherlistDAO {
 				pStmt.setString(j, publisher.getPublisherName());
 			}
 
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeQuery();
-			System.out.println("rs:" + rs);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"rs:" + rs);
 			while (rs.next()) {
 				int publisherId = rs.getInt("publisherId");
 				String publisherName = rs.getString("publisherName");

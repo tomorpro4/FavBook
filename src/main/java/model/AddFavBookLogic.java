@@ -10,17 +10,17 @@ public class AddFavBookLogic {
 		
 		FavoritelistDAO favoritelistDAO = new FavoritelistDAO();
 		FavBook favBook = favoritelistDAO.listFavBook(user, book);
-		System.out.println(book.getStatus().getStatus());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+book.getStatus().getStatus());
 		int favBookId = favBook.getFavBookId();
 		if(favBookId != 0) {
 			favBook = book;
 			favBook.setFavBookId(favBookId);
-			System.out.println(favBook.getMemo());
-			System.out.println(favBook.getStatus().getStatus());
-			System.out.println(favBook.getBookId());
-			System.out.println("登録済");
-			System.out.println(favBook.getFavBookId());
-			System.out.println(favBook.getStatus().getStatusId());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBook.getMemo());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBook.getStatus().getStatus());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBook.getBookId());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"登録済");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBook.getFavBookId());
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+favBook.getStatus().getStatusId());
 			favoritelistDAO.UpdFavBook(favBook, user);
 			
 		}else {
@@ -29,7 +29,7 @@ public class AddFavBookLogic {
 			favBook.setStatus(book.getStatus());
 			favBook.setMemo(book.getMemo());
 			
-			System.out.println("未登録");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"未登録");
 			favoritelistDAO.AddFavBook(favBook, user);
 
 		}

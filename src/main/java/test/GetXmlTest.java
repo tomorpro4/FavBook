@@ -36,20 +36,20 @@ public class GetXmlTest {
 		UrlCreate urlCreate = new UrlCreate();
 		
 		String urlStr = urlCreate.CreateSearchUrl(keyword);
-		System.out.println(urlCreate.getStartRecord());
-		System.out.println(urlCreate.getMaximumRecords());
-		System.out.println(urlStr);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+urlCreate.getStartRecord());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+urlCreate.getMaximumRecords());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+urlStr);
 		
 
 //		urlStr = "https://ndlsearch.ndl.go.jp/api/sru?operation%3DsearchRetrieve%26version%3D1.2%26recordPacking%3Dxml%26recordSchema%3Ddcndl%26inprocess%3Dfalse%26onlyBib%3Dfalse%26startRecord%3D1%26maximumRecords%3D20%26query%3Dtitle%3D%22Java%22";
 		GetXmlLogic getXmlLogic = new GetXmlLogic();
 		String xmlStr = getXmlLogic.GetXmlByUrl(urlStr);
-		System.out.println("GetXmlTest");
-//			System.out.println(xmlStr);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"GetXmlTest");
+//			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+xmlStr);
 		XMLmodel xmLmodel = new XMLmodel(xmlStr);
 		XmlToBookLogic xmlToBookLogic = new XmlToBookLogic();
 		BookList bookList = xmlToBookLogic.XmlToBookList(xmLmodel);
-		System.out.println(bookList.get(0).getBookId());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookList.get(0).getBookId());
 	}
 
 }

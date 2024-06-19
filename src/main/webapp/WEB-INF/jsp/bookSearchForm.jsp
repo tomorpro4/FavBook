@@ -184,6 +184,7 @@ action=search
 <% } %>
 <a href="SearchBookServlet?bookTitle=<%= keyword.getTitle() %>&bookTitleCon=<%= keyword.getTitleCon() %>&isbn=<%= keyword.getIsbn() %>&isbnCon=<%= keyword.getIsbnCon() %>&creatorName=<%= keyword.getCreator() %>&creatorNameCon=<%= keyword.getCreatorCon() %>&publisherName=<%= keyword.getPublisher() %>&publisherNameCon=<%= keyword.getPublisherCon() %>&categoryName=<%= keyword.getCategory() %>&categoryNameCon=<%= keyword.getCategoryCon() %>&maximumRecords=<%= keyword.getMaximumRecords() %>&nextPosition=<%= bookList.getNextRecord() %>">次へ</a>
 <% } %>
+<input type="hidden" name="action" value="FavRegi">
 </form>
 
 

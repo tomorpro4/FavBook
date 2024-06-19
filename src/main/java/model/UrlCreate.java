@@ -78,8 +78,8 @@ public class UrlCreate {
 		String urlStr1 = this.urlStr;
 		String startRecord = String.valueOf(keyword.getStartRecord());
 		String maximumRecords = String.valueOf(keyword.getMaximumRecords());
-		System.out.println(startRecord);
-		System.out.println(maximumRecords);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+startRecord);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+maximumRecords);
 		if(!startRecord.equals("0")) {
 			this.startRecord = startRecord;
 		}

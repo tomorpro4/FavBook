@@ -15,24 +15,24 @@ public class CreatorDAOTEST {
 		Creator creator = new Creator(1);
 		creatorlistDAO creatorlistDAO = new creatorlistDAO();
 		creator = creatorlistDAO.searchCreatorById(creator);
-		System.out.println(creator.getCreatorId());
-		System.out.println(creator.getCreatorName());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+creator.getCreatorId());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+creator.getCreatorName());
 	}
 	
 	public static void findCreatorIdByNameTest() {
 		Creator creator = new Creator("Creator_AAA");
 		creatorlistDAO creatorlistDAO = new creatorlistDAO();
 		creator = creatorlistDAO.searchCreatorByName(creator);
-		System.out.println(creator.getCreatorId());
-		System.out.println(creator.getCreatorName());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+creator.getCreatorId());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+creator.getCreatorName());
 	}
 	
 	public static void insertCreatorTest() {
 		Creator creator = new Creator("Creator_L");
 		creatorlistDAO creatorlistDAO = new creatorlistDAO();
 		creator = creatorlistDAO.insertCreator(creator);
-		System.out.println(creator.getCreatorId());
-		System.out.println(creator.getCreatorName());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+creator.getCreatorId());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+creator.getCreatorName());
 	}
 
 }

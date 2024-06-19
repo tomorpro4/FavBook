@@ -52,7 +52,7 @@ public class BookListDAO {
 			pStmt.setString(1, book.getBookTitle());
 			pStmt.setString(2, book.getIsbn());
 			pStmt.setInt(3, book.getPublisher().getPublisherId());
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeUpdate();
 			pStmt = conn.prepareCall("SELECT last_insert_id();");
 			ResultSet rs2 =pStmt.executeQuery();
@@ -134,14 +134,14 @@ public class BookListDAO {
 				pStmt.setInt(j, categoryId);
 			}
 			
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeQuery();
 			while(rs.next()) {
 				String bookListIdStr = rs.getString("bookListId");
 				if(bookListIdStr != null) {
 					bookListId = Integer.parseInt(bookListIdStr);
 					book.setBookId(bookListId);
-					System.out.println("見つかりました"+bookListIdStr);
+					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"見つかりました"+bookListIdStr);
 				}
 				
 			}
@@ -223,9 +223,9 @@ public class BookListDAO {
 				pStmt.setString(j, keyword.getNewCategory());
 			}
 
-			System.out.println(pStmt);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+pStmt);
 			rs = pStmt.executeQuery();
-			System.out.println("rs:" + rs);
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"rs:" + rs);
 			while (rs.next()) {
 				int bookId = Integer.parseInt(rs.getString("bookListId"));
 				String isbn = rs.getString("isbn");
@@ -238,12 +238,12 @@ public class BookListDAO {
 				String recordCategory = "";
 				String recordSubCategory = "";
 				if (!(bookTitle == null || bookTitle.equals(""))) {
-//					System.out.println(id);
-//					System.out.println(title);
-//					System.out.println(isbn);
-//					System.out.println(creator);
-//					System.out.println(issued);
-//					System.out.println(category);
+//					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+id);
+//					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+title);
+//					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+isbn);
+//					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+creator);
+//					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+issued);
+//					System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+category);
 					Book book = new Book(bookId, bookTitle, isbn, creator, publisher, category);
 					bookList.add(book);
 				}

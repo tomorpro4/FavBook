@@ -8,6 +8,8 @@
 </head>
 <body>
 favorite book<br>
-<a href="LoginServlet">ログイン</a>
+<a href="LoginServlet">ログイン</a><br>
+<a href="SearchBookServlet">本を検索する</a><br>
+
 </body>
 </html>

@@ -27,14 +27,14 @@ public class SearchBookLogic {
 		int creatorId = book.getCreator().getCreatorId();
 		int publisherId = book.getPublisher().getPublisherId();
 		int categoryId = book.getCategory().getCategoryId();
-		System.out.println("BookId");
-		System.out.println(bookId);
-		System.out.println("CreatorId");
-		System.out.println(creatorId);
-		System.out.println("PublisherId");
-		System.out.println(publisherId);
-		System.out.println("CategoryId");
-		System.out.println(book.getCategory().getCategoryId());
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"BookId");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+bookId);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"CreatorId");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+creatorId);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"PublisherId");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+publisherId);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"CategoryId");
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+book.getCategory().getCategoryId());
 		if(bookId == 0) {
 			int id = bookListDAO.AddBook(book);
 //			book = bookListDAO.MachBook(book);

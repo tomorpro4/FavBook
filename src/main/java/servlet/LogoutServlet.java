@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +23,10 @@ public class LogoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.invalidate();
-		System.out.println("ログアウトしました");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("./");
-		dispatcher.forward(request, response);
+		System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"ログアウトしました");
+		response.sendRedirect("./");
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("./");
+//		dispatcher.forward(request, response);
 	}
 
 

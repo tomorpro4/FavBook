@@ -25,9 +25,9 @@ public class UserDAO_loginTest {
 				(loginUser.getUserId() != null && loginUser.getUserId().equals("tomo")) &&
 				(loginUser.getName() != null && loginUser.getName().equals("津島")) &&
 				(loginUser.getEmail() != null && loginUser.getEmail().equals("tomorpro4@gmail.com"))) {
-			System.out.println("loginOKTest成功");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"loginOKTest成功");
 		}else {
-			System.out.println("loginOKTest失敗");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"loginOKTest失敗");
 
 		}
 	}
@@ -38,9 +38,9 @@ public class UserDAO_loginTest {
 		UserDAO userDAO = new UserDAO();
 		LoginUser loginUser = userDAO.loginUser(user);
 		if(loginUser == null) {
-			System.out.println("loginNGTest成功");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"loginNGTest成功");
 		}else {
-			System.out.println("loginNGTest失敗");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"loginNGTest失敗");
 		}
 	}
 	
@@ -51,9 +51,9 @@ public class UserDAO_loginTest {
 		boolean bo = userDAO.registerUser(newUser);
 		
 		if(bo) {
-			System.out.println("registerOKTest成功");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"registerOKTest成功");
 		}else {
-			System.out.println("registerOKTest失敗");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"registerOKTest失敗");
 
 		}
 	}
@@ -64,9 +64,9 @@ public class UserDAO_loginTest {
 		boolean bo = userDAO.registerUser(newUser);
 		
 		if(!bo) {
-			System.out.println("registerNGTest成功");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"registerNGTest成功");
 		}else {
-			System.out.println("registerNGTest失敗");
+			System.out.println(this.getClass().getName()+":"+new Throwable().getStackTrace()[0].getLineNumber()+";"+"registerNGTest失敗");
 
 		}
 	}
